@@ -8,9 +8,10 @@ A bunch of the parameters are configurable via switches and dials on the enclosu
 
 Last, a power switch enabled logical power-off with a nice on-off animation. This switches off the leds without physically switching primary power.
 
-# Development notes
+# Design notes
 
-- The microcontroller goes into deep sleep mode based on the power switch and should consume virtually no power itself when off. However, many other components will consume power not the least of which is the quiescent current draw of the led pixels even when off. If power is to be fully minimized an N-channel power mosfet should be put between the led strip ground and common ground and should be switched by the microcontroller.
-- I used completely different debouncing techniques for each type of input, essentially only out of the interest of experimentation.
+- The microcontroller goes into deep sleep mode based on the power switch and should consume virtually no power itself when off. However, many other components will consume power not the least of which is the quiescent current draw of the led pixels themselves. If power is to be fully minimized an N-channel power mosfet should be put between the led strip ground and common ground and should be switched by the microcontroller.
 - Some combinations of parameter settings create a strong flickering effect. I haven't tried to fix this.
+- I used completely different debouncing techniques for each type of input, essentially only out of the interest of experimentation.
+- There's also no serious attempt at a central state machine.
 - Floating point operations are not used at any point. This should permit greater portability across other inexpensive microcontrollers.
